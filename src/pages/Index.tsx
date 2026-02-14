@@ -21,8 +21,8 @@ const FloatingHearts = ({ sad }: { sad: boolean }) => {
   const hearts = Array.from({ length: 20 }, (_, i) => {
     const size = 14 + Math.random() * 24;
     const left = Math.random() * 100;
-    const delay = Math.random() * 8;
-    const duration = 6 + Math.random() * 8;
+    const delay = Math.random() * 0.6;
+    const duration = 6 + Math.random() * 1;
     const opacity = 0.3 + Math.random() * 0.5;
 
     return (
@@ -48,6 +48,52 @@ const FloatingHearts = ({ sad }: { sad: boolean }) => {
   });
 
   return <>{hearts}</>;
+};
+
+
+/* ---------- Floating Love Text ---------- */
+const FloatingLoveTexts = () => {
+  const [texts, setTexts] = useState<
+    { id: number; left: number; bottom: number }[]
+  >([]);
+
+  const counter = useRef(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      counter.current++;
+
+      setTexts((prev) => [
+        ...prev.slice(-8),
+        {
+          id: counter.current,
+          left: 10 + Math.random() * 80,
+          bottom: Math.random() * 40,
+        },
+      ]);
+    }, 1200);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      {texts.map((t) => (
+        <span
+          key={t.id}
+          className="animate-float-text font-romantic fixed pointer-events-none z-10"
+          style={{
+            left: `${t.left}%`,
+            bottom: `${t.bottom}%`,
+            color: "hsl(340, 82%, 52%)",
+            fontSize: "1.2rem",
+          }}
+        >
+          I love you 💕
+        </span>
+      ))}
+    </>
+  );
 };
 
 /* ---------- Confetti ---------- */
@@ -141,7 +187,10 @@ const Index = () => {
 
       <FloatingHearts sad={phase === "rejection"} />
 
-      {phase === "celebration" && <Confetti />}
+      {phase === "celebration" && <>
+      <Confetti />
+      <FloatingLoveTexts />
+      </>}
 
       {/* QUESTION */}
       {phase === "question" && (
