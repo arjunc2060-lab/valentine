@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 340 80% 92%;
+    --foreground: 340 60% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 340 60% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 60% 20%;
+    --primary: 340 82% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 330 70% 85%;
+    --secondary-foreground: 340 60% 20%;
+    --muted: 340 30% 90%;
+    --muted-foreground: 340 20% 50%;
+    --accent: 350 90% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 340 40% 85%;
+    --input: 340 40% 85%;
+    --ring: 340 82% 52%;
+    --radius: 1rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --gradient-romantic: linear-gradient(135deg, hsl(340, 80%, 70%), hsl(350, 90%, 65%), hsl(20, 80%, 70%));
+    --gradient-sad: linear-gradient(135deg, hsl(240, 20%, 20%), hsl(260, 15%, 15%));
+    --gradient-celebration: linear-gradient(135deg, hsl(340, 90%, 80%), hsl(30, 90%, 80%), hsl(340, 80%, 75%));
+    --shadow-card: 0 20px 60px -15px hsla(340, 80%, 50%, 0.3);
+    --shadow-button: 0 8px 25px -5px hsla(340, 80%, 50%, 0.4);
+  }
+
+  .dark {
+    --background: 240 20% 10%;
+    --foreground: 340 30% 90%;
+    --card: 240 20% 15%;
+    --card-foreground: 340 30% 90%;
+    --primary: 340 82% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 330 30% 25%;
+    --secondary-foreground: 340 30% 90%;
+    --muted: 240 15% 20%;
+    --muted-foreground: 340 15% 60%;
+    --accent: 350 90% 60%;
+    --accent-foreground: 0 0% 100%;
+    --border: 240 15% 25%;
+    --input: 240 15% 25%;
+    --ring: 340 82% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
+}
+
+/* Floating hearts */
+@keyframes float-heart {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(720deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes float-heart-sad {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-heart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float-text {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes crying {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+.animate-float-heart {
+  animation: float-heart linear infinite;
+}
+
+.animate-float-heart-sad {
+  animation: float-heart-sad linear infinite;
+}
+
+.animate-pulse-heart {
+  animation: pulse-heart 1s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-confetti {
+  animation: confetti-fall linear forwards;
+}
+
+.animate-float-text {
+  animation: float-text 3s ease-out forwards;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-crying {
+  animation: crying 0.3s ease-in-out infinite;
+}
+
+.font-romantic {
+  font-family: 'Pacifico', cursive;
+}
